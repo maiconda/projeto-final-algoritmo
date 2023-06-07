@@ -65,10 +65,77 @@ void leftVerify(char grade[M][N], char *word, int i, int j, int length) {
     }
 }
 
+void topRightVerify(char grade[M][N], char *word, int i, int j, int length) {
+    
+    int wordCounter = 0;
+    int k;
+    int l = i;
+    
+    for (k = j; k < j + length; k++) {
+        if (grade[l][k] == word[wordCounter]) {
+            wordCounter++;
+        }
+        l--;
+    }
+    if (wordCounter == length) {
+        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l+2, k);
+    }
+}
+
+void topLeftVerify(char grade[M][N], char *word, int i, int j, int length) {
+    
+    int wordCounter = 0;
+    int k;
+    int l = i;
+    
+    for (k = j; k > j - length; k--) {
+        if (grade[l][k] == word[wordCounter]) {
+            wordCounter++;
+        }
+        l--;
+    }
+    if (wordCounter == length) {
+        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l+2, k+2);
+    }
+}
+
+void bottomLeftVerify(char grade[M][N], char *word, int i, int j, int length) {
+    
+    int wordCounter = 0;
+    int k;
+    int l = i;
+    
+    for (k = j; k > j - length; k--) {
+        if (grade[l][k] == word[wordCounter]) {
+            wordCounter++;
+        }
+        l++;
+    }
+    if (wordCounter == length) {
+        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l, k+2);
+    }
+}
+
+void bottomRightVerify(char grade[M][N], char *word, int i, int j, int length) {
+    
+    int wordCounter = 0;
+    int k;
+    int l = i;
+    
+    for (k = j; k < j + length; k++) {
+        if (grade[l][k] == word[wordCounter]) {
+            wordCounter++;
+        }
+        l++;
+    }
+    if (wordCounter == length) {
+        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l+2, k);
+    }
+}
+
 void principalVerify(char grade[M][N], char *word) {
     
     int lenght = strlen(word);
-    // printf("%s-%d\n", word, lenght);
     
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
@@ -77,18 +144,18 @@ void principalVerify(char grade[M][N], char *word) {
                 if(i >= lenght-1){
                     
                     topVerify(grade, word, i, j, lenght);
-                    // if(j >= lenght-1)
-                    //      printf("verificar cima/esquerda\n");
-                    // if(N-j >= lenght)
-                    //      printf("verificar cima/direita\n");
+                    if(j >= lenght-1)
+                         topLeftVerify(grade, word, i, j, lenght);
+                    if(N-j >= lenght)
+                         topRightVerify(grade, word, i, j, lenght);
                 }
                 
                 if(M-i >= lenght){
                     bottomVerify(grade, word, i, j, lenght);
-                    // if(j >= lenght-1)
-                    //      printf("verificar baixo/esquerda\n");
-                    // if(N-j >= lenght)
-                    //      printf("verificar baixo/direita\n");
+                    if(j >= lenght-1)
+                         bottomLeftVerify(grade, word, i, j, lenght);
+                    if(N-j >= lenght)
+                         bottomRightVerify(grade, word, i, j, lenght);
                   }
                   
                 if(N-j >= lenght)
