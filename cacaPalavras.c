@@ -15,7 +15,7 @@ void topVerify(char grade[M][N], char *word, int i, int j, int length, int *veri
         }
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, k+2, j+1);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, k+1, j);
         (*verifyCounter)++;
     }
 }
@@ -31,7 +31,7 @@ void bottomVerify(char grade[M][N], char *word, int i, int j, int length, int *v
     }
     
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, k, j+1);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, k-1, j);
         (*verifyCounter)++;
     }
 }
@@ -46,7 +46,7 @@ void rightVerify(char grade[M][N], char *word, int i, int j, int length, int *ve
         }
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, i+1, k);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i, k-1);
         (*verifyCounter)++;
     }
 }
@@ -61,7 +61,7 @@ void leftVerify(char grade[M][N], char *word, int i, int j, int length, int *ver
         }
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, i+1, k+2);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i, k+1);
         (*verifyCounter)++;
     }
 }
@@ -77,7 +77,7 @@ void topRightVerify(char grade[M][N], char *word, int i, int j, int length, int 
         l--;
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l+2, k);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, l+1, k-1);
         (*verifyCounter)++;
     }
 }
@@ -93,7 +93,7 @@ void topLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *
         l--;
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l+2, k+2);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, l+1, k+1);
         (*verifyCounter)++;
     }
 }
@@ -109,7 +109,7 @@ void bottomLeftVerify(char grade[M][N], char *word, int i, int j, int length, in
         l++;
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l, k+2);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, l-1, k+1);
         (*verifyCounter)++;
     }
 }
@@ -125,7 +125,7 @@ void bottomRightVerify(char grade[M][N], char *word, int i, int j, int length, i
         l++;
     }
     if (wordCounter == length) {
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, i+1, j+1, l, k);
+        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, l-1, k-1);
         (*verifyCounter)++;
     }
 }
@@ -163,7 +163,7 @@ void principalVerify(char grade[M][N], char *word) {
     }
     
     if(verifyCounter == 0){
-        printf("ACHAMOS A PALAVRA %s - INICIO [%d][%d] - FIM [%d][%d]\n", word, 0, 0, 0, 0);
+        printf("%s - [%d][%d], [%d][%d]\n", word, 0, 0, 0, 0);
     }
 }
 
