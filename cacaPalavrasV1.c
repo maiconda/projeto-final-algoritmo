@@ -230,6 +230,8 @@ int main() {
         "SAPO",
         "SOPA"
     };
+    
+    //Ao adicionar ou remover palavras na matriz words, é necessário adaptar o valor da constante W localizada na linha 6 :)
 
     int validation = convertString(gradeString, grade);
 
