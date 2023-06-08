@@ -244,7 +244,7 @@ int main() {
             }
         } while (close == 0);
     } else {
-        printf("\nPor favor, adicione uma matriz válida");
+        printf("\nPor favor, adicione uma matriz em formato de String válida");
     }
 
     return 0;
