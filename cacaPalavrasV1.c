@@ -7,7 +7,7 @@
 #define ML 10
 
 struct Finded {
-    char word[10];
+    char word[ML];
     int x1;
     int y1;
     int x2;
