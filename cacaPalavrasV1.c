@@ -6,7 +6,15 @@
 #define W 7
 #define ML 10
 
-void topVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+struct Finded {
+    char word[10];
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+};
+
+void topVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k;
 
     for (k = i; k > i - length; k--) {
@@ -16,12 +24,17 @@ void topVerify(char grade[M][N], char *word, int i, int j, int length, int *veri
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i - length + 1, j);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i - length + 1;
+        findedWords[*findedCounter].y2 = j;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void bottomVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void bottomVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k;
 
     for (k = i; k < i + length; k++) {
@@ -31,12 +44,17 @@ void bottomVerify(char grade[M][N], char *word, int i, int j, int length, int *v
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i + length - 1, j);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i + length - 1;
+        findedWords[*findedCounter].y2 = j;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void rightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void rightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k;
 
     for (k = j; k < j + length; k++) {
@@ -46,12 +64,17 @@ void rightVerify(char grade[M][N], char *word, int i, int j, int length, int *ve
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i, j + length - 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i;
+        findedWords[*findedCounter].y2 = j + length - 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void leftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void leftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k;
 
     for (k = j; k > j - length; k--) {
@@ -61,12 +84,17 @@ void leftVerify(char grade[M][N], char *word, int i, int j, int length, int *ver
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i, j - length + 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i;
+        findedWords[*findedCounter].y2 = j - length + 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void topRightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void topRightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k, l = i;
 
     for (k = j; k < j + length; k++) {
@@ -77,12 +105,17 @@ void topRightVerify(char grade[M][N], char *word, int i, int j, int length, int 
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i - length + 1, j + length - 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i - length + 1;
+        findedWords[*findedCounter].y2 = j + length - 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void topLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void topLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k, l = i;
 
     for (k = j; k > j - length; k--) {
@@ -93,12 +126,17 @@ void topLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i - length + 1, j - length + 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i - length + 1;
+        findedWords[*findedCounter].y2 = j - length + 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void bottomLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void bottomLeftVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k, l = i;
 
     for (k = j; k > j - length; k--) {
@@ -109,12 +147,17 @@ void bottomLeftVerify(char grade[M][N], char *word, int i, int j, int length, in
     }
     
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i + length - 1, j - length + 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i + length - 1;
+        findedWords[*findedCounter].y2 = j - length + 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-void bottomRightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter) {
+void bottomRightVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k, l = i;
 
     for (k = j; k < j + length; k++) {
@@ -125,26 +168,31 @@ void bottomRightVerify(char grade[M][N], char *word, int i, int j, int length, i
     }
 
     if (wordCounter == length) {
-        printf("%s - [%d][%d], [%d][%d]\n", word, i, j, i + length - 1, j + length - 1);
+        strcpy(findedWords[*findedCounter].word, word);
+        findedWords[*findedCounter].x1 = i;
+        findedWords[*findedCounter].y1 = j;
+        findedWords[*findedCounter].x2 = i + length - 1;
+        findedWords[*findedCounter].y2 = j + length - 1;
+        (*findedCounter)++;
         (*verifyCounter)++;
     }
 }
 
-int principalVerify(char grade[M][N], char *word) {
+int principalVerify(char grade[M][N], char *word, struct Finded* findedWords, int *findedCounter) {
     int length = strlen(word);
     int verifyCounter = 0;
 
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
             if (grade[i][j] == word[0]) {
-                topVerify(grade, word, i, j, length, &verifyCounter);
-                topLeftVerify(grade, word, i, j, length, &verifyCounter);
-                topRightVerify(grade, word, i, j, length, &verifyCounter);
-                bottomVerify(grade, word, i, j, length, &verifyCounter);
-                bottomLeftVerify(grade, word, i, j, length, &verifyCounter);
-                bottomRightVerify(grade, word, i, j, length, &verifyCounter);
-                rightVerify(grade, word, i, j, length, &verifyCounter);
-                leftVerify(grade, word, i, j, length, &verifyCounter);
+                topVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                topLeftVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                topRightVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                bottomVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                bottomLeftVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                bottomRightVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                rightVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
+                leftVerify(grade, word, i, j, length, &verifyCounter, findedWords, findedCounter);
             }
         }
     }
@@ -186,14 +234,25 @@ int main() {
         "SOPA"
     };
     
-    //Ao adicionar ou remover palavras na matriz words, é necessário adaptar o valor da constante W localizada na linha 6 :)
-
+    struct Finded findedWords[W * 3];
+    int findedCounter = 0;
+    
     if (convertString(gradeString, grade) == 1) {
         for (int i = 0; i < W; i++) {
-            if (principalVerify(grade, words[i]) == 0){
-                printf("%s - [0][0], [0][0]\n", words[i]);
+            if (principalVerify(grade, words[i], findedWords, &findedCounter) == 0){
+                strcpy(findedWords[findedCounter].word, words[i]);
+                findedWords[findedCounter].x1 = 0;
+                findedWords[findedCounter].y1 = 0;
+                findedWords[findedCounter].x2 = 0;
+                findedWords[findedCounter].y2 = 0;
+                findedCounter++;
             }
         }
+        
+        for (int i = 0; i < findedCounter; i++) {
+            printf("%s - [%d][%d], [%d][%d]\n", findedWords[i].word, findedWords[i].x1, findedWords[i].y1, findedWords[i].x2, findedWords[i].y2);
+        }
+        
     } else {
         printf("Por favor, adicione uma matriz válida");
     }
