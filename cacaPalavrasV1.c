@@ -221,6 +221,12 @@ int convertString(char *gradeString, char grade[M][N]) {
     }
 }
 
+int printWords(int *findedCounter, struct Finded* findedWords){
+    for (int i = 0; i < *findedCounter; i++) {
+        printf("%s - [%d][%d], [%d][%d]\n", findedWords[i].word, findedWords[i].x1, findedWords[i].y1, findedWords[i].x2, findedWords[i].y2);
+    }
+}
+
 int main() {
     char gradeString[] = "SAPAACAVAAAAPADAVUUJTAPAAPASONASJAVMVARAJPOATRRASRAOJALORAAAOPAOMOUPSLPAPPMVAUAAOATALSVAPAAOTTRAASOP";
     char grade[M][N];
@@ -249,9 +255,7 @@ int main() {
             }
         }
         
-        for (int i = 0; i < findedCounter; i++) {
-            printf("%s - [%d][%d], [%d][%d]\n", findedWords[i].word, findedWords[i].x1, findedWords[i].y1, findedWords[i].x2, findedWords[i].y2);
-        }
+        printWords(&findedCounter, findedWords);
         
     } else {
         printf("Por favor, adicione uma matriz válida");
