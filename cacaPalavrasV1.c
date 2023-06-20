@@ -221,7 +221,7 @@ int convertString(char *gradeString, char grade[M][N]) {
     }
 }
 
-int printWords(int *findedCounter, struct Finded* findedWords){
+void printWords(int *findedCounter, struct Finded* findedWords){
     for (int i = 0; i < *findedCounter; i++) {
         printf("%s - [%d][%d], [%d][%d]\n", findedWords[i].word, findedWords[i].x1, findedWords[i].y1, findedWords[i].x2, findedWords[i].y2);
     }
