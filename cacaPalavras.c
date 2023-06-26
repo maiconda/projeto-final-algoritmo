@@ -14,6 +14,57 @@ struct Finded {
     int y2;
 };
 
+void topVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void bottomVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void rightVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void leftVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void topRightVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void topLeftVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void bottomLeftVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+void bottomRightVerify(char[][N], char[], int, int, int, int*, struct Finded*, int*);
+int principalVerify(char[][N], char[], struct Finded*, int*);
+int convertString(char[], char[][N]);
+void printWords(int*, struct Finded*);
+
+int main() {
+    char gradeString[] = "AZOAAOAVAFAZOTTOAVACALPADUMVUGAOPADUMVOGTTGAAOASOETIEAAOAMOEATJOVPRARRATJLVSPARRJAOARRATSTJAOAAURPSTAOJALIVRYIAOJATPVAAIONRLMETFAOONRAMMEFUOPAPPTVAMNLPACPTAANNAOVTSTOUROAEAAAPCURAAAOTTRAASSSOLWTRAASNPAZOATOAVA  ZEQROAVAFAOPADUMVNGANPPPUMVUGTREAAOAOOETROAIZASOEARJLVMTARRARJTVPVARRJAOACAZINAGROOAREBSTAOJA LVAAIAOJAL PDNIONRDMEEFUOONRLMEDFOOPDEDICACAOPAPPTVAENAOZATTOURAAOVATIOTRZAAOTTRAASNPAOTTRAASNO";
+    char grade[M][N];
+    char words[W][ML] = {
+        "PARALELEPIPEDO",
+        "ALGORITMOS NOTA DEZ",
+        "COMPUTACAO NOTA DEZ",
+        "DEDICACAO",
+        "CAMPUS",
+        "ORGANIZACAO",
+        "SOL",
+        "LOSS",
+        "ATENCAO"
+    };
+    
+    struct Finded findedWords[W * 3];
+    int findedCounter = 0;
+    
+    if (convertString(gradeString, grade) == 1) {
+        for (int i = 0; i < W; i++) {
+            if (principalVerify(grade, words[i], findedWords, &findedCounter) == 0){
+                strcpy(findedWords[findedCounter].word, words[i]);
+                findedWords[findedCounter].x1 = 0;
+                findedWords[findedCounter].y1 = 0;
+                findedWords[findedCounter].x2 = 0;
+                findedWords[findedCounter].y2 = 0;
+                findedCounter++;
+            }
+        }
+        
+        printWords(&findedCounter, findedWords);
+        
+    } else {
+        printf("Por favor, adicione uma matriz válida");
+    }
+
+    return 0;
+}
+
 void topVerify(char grade[M][N], char *word, int i, int j, int length, int *verifyCounter, struct Finded* findedWords, int *findedCounter) {
     int wordCounter = 0, k;
 
@@ -225,43 +276,4 @@ void printWords(int *findedCounter, struct Finded* findedWords){
     for (int i = 0; i < *findedCounter; i++) {
         printf("%s - [%d][%d], [%d][%d]\n", findedWords[i].word, findedWords[i].x1, findedWords[i].y1, findedWords[i].x2, findedWords[i].y2);
     }
-}
-
-int main() {
-    char gradeString[] = "AZOAAOAVAFAZOTTOAVACALPADUMVUGAOPADUMVOGTTGAAOASOETIEAAOAMOEATJOVPRARRATJLVSPARRJAOARRATSTJAOAAURPSTAOJALIVRYIAOJATPVAAIONRLMETFAOONRAMMEFUOPAPPTVAMNLPACPTAANNAOVTSTOUROAEAAAPCURAAAOTTRAASSSOLWTRAASNPAZOATOAVA  ZEQROAVAFAOPADUMVNGANPPPUMVUGTREAAOAOOETROAIZASOEARJLVMTARRARJTVPVARRJAOACAZINAGROOAREBSTAOJA LVAAIAOJAL PDNIONRDMEEFUOONRLMEDFOOPDEDICACAOPAPPTVAENAOZATTOURAAOVATIOTRZAAOTTRAASNPAOTTRAASNO";
-    char grade[M][N];
-    char words[W][ML] = {
-        "PARALELEPIPEDO",
-        "ALGORITMOS NOTA DEZ",
-        "COMPUTACAO NOTA DEZ",
-        "DEDICACAO",
-        "CAMPUS",
-        "ORGANIZACAO",
-        "SOL",
-        "LOSS",
-        "ATENCAO"
-    };
-    
-    struct Finded findedWords[W * 3];
-    int findedCounter = 0;
-    
-    if (convertString(gradeString, grade) == 1) {
-        for (int i = 0; i < W; i++) {
-            if (principalVerify(grade, words[i], findedWords, &findedCounter) == 0){
-                strcpy(findedWords[findedCounter].word, words[i]);
-                findedWords[findedCounter].x1 = 0;
-                findedWords[findedCounter].y1 = 0;
-                findedWords[findedCounter].x2 = 0;
-                findedWords[findedCounter].y2 = 0;
-                findedCounter++;
-            }
-        }
-        
-        printWords(&findedCounter, findedWords);
-        
-    } else {
-        printf("Por favor, adicione uma matriz válida");
-    }
-
-    return 0;
 }
