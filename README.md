@@ -13,5 +13,7 @@ Dentro dessas funções, um loop for percorre a matriz de acordo com o número d
 
 Após a verificação de todas as palavras, a função printWords é chamada para percorrer todo o vetor de estruturas findedWords e imprimir todos os valores preenchidos até a posição correspondente à variável findedCounter, apresentando as informações de forma adequada.
 
+![Captura de tela 2023-06-26 091353](https://github.com/maiconda/projeto-final-algoritmo/assets/111695088/9158bfe6-19a4-4449-8388-c8cd224404dc)
+
 ## Como Rodar
 É possível rodar o projeto presente no arquivo 'cacaPalavras.c' disponível neste repositório copiando o seu código em algum compilador de preferência. Recomendo a utilização do seguinte compilador presente na web: https://www.onlinegdb.com/online_c_compiler
